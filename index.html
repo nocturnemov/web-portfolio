@@ -3,31 +3,33 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nocturne</title>
-<meta name="description" content="Short-form video editor. Retention-first edits built for the YouTube algorithm. Full Adobe Creative stack + Blender 3D." />
+<title>Danny Faraje — Web Development &amp; Software Engineering Portfolio</title>
+<meta name="description" content="Academic and web engineering portfolio of Danny Faraje. Showcasing production Next.js, TypeScript, and modern web applications." />
 
-<!-- Fonts: IBM Plex Mono (display) + Crimson Text (body) — mirrors screenpipe.com -->
+<!-- Fonts: IBM Plex Mono (display/technical) + Crimson Text (editorial) + Hanken Grotesk (body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
 <style>
 /* ============================================================
-   TOKENS  — palette + type sampled from screenpipe.com
+   TOKENS — technical blueprint palette & sharp geometry
    ============================================================ */
 :root{
-  --paper:   #F6F6F3;   /* page background */
+  --paper:   #F6F6F3;   /* warm newsprint background */
   --panel:   #EFEFEA;   /* raised card surface */
-  --ink:     #0A0A0A;   /* primary text */
+  --ink:     #0A0A0A;   /* primary deep black */
   --ink-70:  rgba(10,10,10,.70);
   --ink-45:  rgba(10,10,10,.45);
   --ink-25:  rgba(10,10,10,.25);
   --line:    #DFDFD8;   /* hairline rules */
-  --rec:     #E4572E;   /* record light — the one accent, used sparingly */
+  --rec:     #E4572E;   /* accent beacon */
+  --teal:    #0D9488;   /* FVIC secondary accent */
+  --code-bg: #141414;   /* terminal black */
 
-  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --serif:'Crimson Text', Georgia, 'Times New Roman', serif;
-  --sans: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --mono:  'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --serif: 'Crimson Text', Georgia, 'Times New Roman', serif;
+  --sans:  'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
 
   --wrap: 1240px;
   --gutter: clamp(20px, 5vw, 72px);
@@ -49,10 +51,10 @@ body{
 a{ color:inherit; text-decoration:none; }
 img{ max-width:100%; display:block; }
 
-/* Everything sharp — screenpipe uses zero border-radius */
+/* Sharp geometry */
 .wrap{ width:100%; max-width:var(--wrap); margin-inline:auto; padding-inline:var(--gutter); }
 
-/* Utility: mono eyebrow / label */
+/* Utility typography */
 .mono{ font-family:var(--mono); }
 .eyebrow{
   font-family:var(--mono);
@@ -84,7 +86,7 @@ img{ max-width:100%; display:block; }
 .crosshair::before{ left:50%; top:0; width:1px; height:100%; transform:translateX(-.5px); }
 .crosshair::after{ top:50%; left:0; height:1px; width:100%; transform:translateY(-.5px); }
 
-/* Ruler tick strip — section divider, echoes screenpipe's measurement rulers */
+/* Section ruler tick strip */
 .ruler{
   height:22px; width:100%;
   background-image:repeating-linear-gradient(90deg,
@@ -98,7 +100,7 @@ img{ max-width:100%; display:block; }
    ============================================================ */
 header.site{
   position:sticky; top:0; z-index:50;
-  background:rgba(246,246,243,.82);
+  background:rgba(246,246,243,.88);
   backdrop-filter:saturate(120%) blur(8px);
   border-bottom:1px solid var(--line);
 }
@@ -108,10 +110,14 @@ header.site{
 }
 .brand{
   font-family:var(--mono); font-weight:700; font-size:16px;
-  letter-spacing:.02em;
+  letter-spacing:.02em; display:flex; align-items:center; gap:8px;
 }
 .brand .dot{ color:var(--rec); }
-.nav-links{ display:flex; align-items:center; gap:30px; }
+.brand .tag{
+  font-size:10px; font-weight:500; letter-spacing:.14em;
+  padding:2px 6px; border:1px solid var(--line); color:var(--ink-45);
+}
+.nav-links{ display:flex; align-items:center; gap:28px; }
 .nav-links a:not(.btn){
   font-family:var(--mono); font-size:12px; letter-spacing:.14em;
   text-transform:uppercase; color:var(--ink-45);
@@ -122,19 +128,20 @@ header.site{
   font-family:var(--mono); font-size:12px; letter-spacing:.12em;
   text-transform:uppercase; font-weight:600;
   padding:11px 18px; border:1px solid var(--ink);
-  display:inline-flex; align-items:center; gap:8px;
+  display:inline-flex; align-items:center; gap:8px; cursor:pointer;
   transition:background .18s ease, color .18s ease, transform .12s ease;
 }
 .btn-solid{ background:var(--ink); color:var(--paper); }
 .btn-solid:hover{ background:transparent; color:var(--ink); }
+.btn-ghost{ background:transparent; color:var(--ink); }
 .btn-ghost:hover{ background:var(--ink); color:var(--paper); }
-.nav .btn{ padding:9px 16px; }
+.nav .btn{ padding:8px 15px; }
 .nav-toggle{ display:none; }
 
 /* ============================================================
    HERO
    ============================================================ */
-.hero{ position:relative; padding-top:clamp(44px,7vh,84px); padding-bottom:36px; }
+.hero{ position:relative; padding-top:clamp(44px,7vh,84px); padding-bottom:44px; }
 .status{
   display:inline-flex; align-items:center; gap:9px;
   font-family:var(--mono); font-size:11px; font-weight:600;
@@ -153,19 +160,21 @@ header.site{
 }
 .hero h1{
   font-family:var(--mono); font-weight:700;
-  font-size:clamp(40px, 8.5vw, 104px);
-  line-height:.94; letter-spacing:-.03em;
+  font-size:clamp(38px, 7.5vw, 96px);
+  line-height:.95; letter-spacing:-.03em;
   text-transform:uppercase;
 }
 .hero .role{
-  font-family:var(--mono); font-size:clamp(13px,1.4vw,16px);
-  color:var(--ink-70); margin-top:14px; letter-spacing:.02em;
+  font-family:var(--mono); font-size:clamp(13px,1.4vw,17px);
+  color:var(--ink-70); margin-top:16px; letter-spacing:.03em; font-weight:600;
 }
 .hero .tagline{
   font-family:var(--sans); font-weight:400;
-  font-size:16px; line-height:1.6;
-  max-width:520px; margin-top:18px; color:var(--ink-70);
+  font-size:clamp(16px, 1.3vw, 18px); line-height:1.6;
+  max-width:680px; margin-top:18px; color:var(--ink-70);
 }
+.hero-actions{ display:flex; flex-wrap:wrap; gap:14px; margin-top:28px; }
+
 /* ============================================================
    SECTION SCAFFOLD
    ============================================================ */
@@ -181,121 +190,300 @@ section.block{ padding:clamp(52px,7vh,88px) 0; position:relative; }
   font-size:clamp(24px,4vw,44px); letter-spacing:-.02em; line-height:1;
 }
 
-/* ABOUT */
-.about-grid{ display:grid; grid-template-columns:320px 1fr; gap:clamp(30px,5vw,64px); align-items:start; }
+/* ============================================================
+   01 ABOUT & ACADEMIC PROFILE
+   ============================================================ */
+.about-grid{ display:grid; grid-template-columns:300px 1fr; gap:clamp(30px,5vw,64px); align-items:start; }
 .about-body{ font-family:var(--sans); }
-.about-body p{ margin-bottom:20px; color:var(--ink-70); font-size:16px; line-height:1.6; font-weight:400; }
-.about-body p.lead{ font-size:16px; line-height:1.6; color:var(--ink-70); font-weight:400; }
-.about-body strong{ font-weight:400; color:var(--ink-70); }
+.about-body p{ margin-bottom:18px; color:var(--ink-70); font-size:16px; line-height:1.65; font-weight:400; }
+.about-body p.lead{ font-size:17px; line-height:1.65; color:var(--ink); font-weight:500; }
 
-/* Profile picture */
 .about-media{ display:flex; flex-direction:column; gap:20px; }
 .pfp{ border:1px solid var(--line); background:var(--panel); overflow:hidden; }
 .pfp img{ width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+.pfp-meta{
+  padding:12px 14px; background:var(--panel); border-top:1px solid var(--line);
+  font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--ink-45);
+}
 
-/* Big red stats — Apollo format */
-.stats{ display:flex; flex-wrap:wrap; gap:clamp(32px,5vw,64px); margin:38px 0 30px; }
+.stats{ display:flex; flex-wrap:wrap; gap:clamp(28px,4vw,56px); margin:34px 0 28px; }
 .stat .n{
   font-family:var(--sans); font-weight:800; color:var(--rec);
-  font-size:clamp(36px,4.8vw,52px); line-height:1; letter-spacing:-.02em;
+  font-size:clamp(34px,4.5vw,48px); line-height:1; letter-spacing:-.02em;
 }
 .stat .k{
   font-family:var(--mono); font-size:11px; letter-spacing:.16em;
-  text-transform:uppercase; color:var(--ink-45); margin-top:12px;
+  text-transform:uppercase; color:var(--ink-45); margin-top:10px;
 }
 
-/* Skill chips */
-.chips{ display:flex; flex-wrap:wrap; gap:10px; }
-.chip{
-  font-family:var(--mono); font-size:12px; letter-spacing:.04em;
-  color:var(--ink-70); border:1px solid var(--line);
-  padding:9px 14px; background:var(--paper);
-  transition:border-color .18s ease, color .18s ease;
-}
-.chip:hover{ border-color:var(--ink); color:var(--ink); }
-
-.stack-card{ border:1px solid var(--line); background:var(--panel); }
-
-/* Horizontal toolset bar — spans full grid width (pic edge → section end) */
+/* Horizontal toolset bar */
 .about-grid > .stack-card{
-  grid-column:1 / -1; margin-top:36px; width:100%;
+  grid-column:1 / -1; margin-top:28px; width:100%;
   display:flex; flex-wrap:nowrap; align-items:stretch;
+  border:1px solid var(--line); background:var(--panel);
 }
 .about-grid > .stack-card .head{
   border-bottom:0; border-right:1px solid var(--ink);
   display:flex; align-items:center; white-space:nowrap;
-  padding:0 16px; font-size:10px; flex:0 0 auto;
+  padding:0 18px; font-size:10px; flex:0 0 auto;
+  background:var(--ink); color:var(--paper);
+  font-family:var(--mono); letter-spacing:.2em; text-transform:uppercase;
 }
 .about-grid > .stack-card .row{
   border-bottom:0; border-right:1px solid var(--line);
-  flex:1 1 auto;
+  flex:1 1 auto; display:flex;
   flex-direction:column; align-items:flex-start; justify-content:center;
-  gap:3px; padding:11px 16px;
+  gap:3px; padding:12px 16px; font-family:var(--mono);
 }
 .about-grid > .stack-card .row:last-child{ border-right:0; }
-.about-grid > .stack-card .row .k{ font-size:9px; letter-spacing:.1em; white-space:nowrap; }
-.about-grid > .stack-card .row .v{ font-size:11px; white-space:nowrap; }
-.stack-card .row{
-  display:flex; justify-content:space-between; align-items:center;
-  padding:15px 20px; border-bottom:1px solid var(--line);
-  font-family:var(--mono); font-size:13px;
+.about-grid > .stack-card .row .k{ font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-45); }
+.about-grid > .stack-card .row .v{ font-size:12px; font-weight:600; }
+
+/* ============================================================
+   02 FEATURED PROJECTS (SHOWCASE)
+   ============================================================ */
+.projects-container{ display:flex; flex-direction:column; gap:64px; }
+
+.project-feature{
+  border:1px solid var(--line); background:var(--panel);
+  display:grid; grid-template-columns:1.2fr 1fr;
+  transition:box-shadow .2s ease, transform .2s ease;
 }
-.stack-card .row:last-child{ border-bottom:0; }
-.stack-card .row .k{ letter-spacing:.06em; text-transform:uppercase; color:var(--ink-45); font-size:11px; }
-.stack-card .row .v{ font-weight:600; }
-.stack-card .head{
-  padding:15px 20px; border-bottom:1px solid var(--ink);
-  background:var(--ink); color:var(--paper);
-  font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+.project-feature:hover{
+  box-shadow:6px 6px 0 var(--ink); transform:translateY(-2px);
 }
 
-/* WORK */
-.subhead{
-  display:flex; align-items:center; gap:14px;
-  font-family:var(--mono); font-size:12px; letter-spacing:.2em;
-  text-transform:uppercase; color:var(--ink-45);
-  margin:52px 0 24px;
+/* Left side: Browser viewport mockup */
+.project-preview{
+  border-right:1px solid var(--line);
+  display:flex; flex-direction:column;
+  background:#fff;
 }
-.subhead::after{ content:""; flex:1; height:1px; background:var(--line); }
-.subhead:first-of-type{ margin-top:0; }
+.browser-bar{
+  height:38px; background:var(--panel); border-bottom:1px solid var(--line);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 14px; font-family:var(--mono); font-size:11px;
+}
+.browser-dots{ display:flex; gap:6px; align-items:center; }
+.b-dot{ width:8px; height:8px; border-radius:50%; border:1px solid rgba(0,0,0,.15); }
+.b-dot.red{ background:#EF4444; }
+.b-dot.yellow{ background:#F59E0B; }
+.b-dot.green{ background:#10B981; }
 
-.grid-long{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-.grid-shorts{ display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
-
-.card{ border:1px solid var(--line); background:var(--panel); transition:transform .18s ease, box-shadow .18s ease; }
-.card:hover{ transform:translateY(-3px); box-shadow:6px 6px 0 var(--ink); }
-.thumb{
-  position:relative; width:100%; background:#000; cursor:pointer; overflow:hidden;
+.browser-url{
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--paper); border:1px solid var(--line);
+  padding:3px 12px; font-size:11px; color:var(--ink-70);
+  max-width:280px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
-.thumb.r16x9{ aspect-ratio:16/9; }
-.thumb.r9x16{ aspect-ratio:9/16; }
-.thumb img{ width:100%; height:100%; object-fit:cover; opacity:.94; transition:opacity .2s ease, transform .4s ease; }
-.card:hover .thumb img{ opacity:1; transform:scale(1.03); }
-.thumb .play{
-  position:absolute; inset:0; margin:auto; width:56px; height:56px;
-  display:flex; align-items:center; justify-content:center;
-  background:rgba(10,10,10,.82); color:var(--paper);
-  transition:background .18s ease;
-}
-.thumb:hover .play{ background:var(--rec); }
-.thumb .play svg{ width:20px; height:20px; margin-left:2px; }
-.thumb iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
-.card .meta{ padding:14px 16px; }
-.card .meta .t{ font-family:var(--serif); font-size:17px; line-height:1.3; font-weight:600; }
-.grid-shorts .card .meta .t{ font-size:14px; }
-.card .meta .tag{
-  font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase;
-  color:var(--ink-45); margin-top:8px;
+.browser-action{
+  font-size:10px; text-transform:uppercase; letter-spacing:.1em;
+  font-weight:600; color:var(--rec); display:flex; align-items:center; gap:4px;
 }
 
-/* CONTACT */
+/* Rendered Canvas / Mockup area */
+.mockup-canvas{
+  position:relative; aspect-ratio:16/10; overflow:hidden;
+  display:flex; flex-direction:column; background:#FAFAFA;
+}
+.mockup-canvas img{
+  width:100%; height:100%; object-fit:cover; object-position:top;
+  transition:transform .4s ease;
+}
+.project-feature:hover .mockup-canvas img{ transform:scale(1.02); }
+
+/* Custom visual mockups for HR Space and Faith Victory */
+.hrspace-mockup{
+  height:100%; width:100%; background:#121212; color:#fff;
+  padding:24px; display:flex; flex-direction:column; justify-content:space-between;
+  background-image:radial-gradient(ellipse at 80% 20%, rgba(229,65,65,0.22), transparent 50%);
+  position:relative; overflow:hidden;
+}
+.hrspace-mockup .blueprint-grid{
+  position:absolute; inset:0; opacity:0.18; pointer-events:none;
+  background-size:20px 20px;
+  background-image:linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px);
+}
+.hrspace-nav{
+  display:flex; align-items:center; justify-content:space-between; position:relative; z-index:2;
+}
+.hrspace-logo-text{
+  font-family:var(--sans); font-weight:700; font-size:16px; letter-spacing:-.02em;
+  display:flex; align-items:center; gap:6px;
+}
+.hrspace-logo-badge{
+  font-size:9px; background:#E54141; color:#fff; padding:2px 6px; border-radius:2px; font-weight:600;
+}
+.hrspace-hero{ position:relative; z-index:2; margin-top:auto; margin-bottom:auto; }
+.hrspace-pill{
+  display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:10px;
+  letter-spacing:.16em; text-transform:uppercase; color:#E54141;
+}
+.hrspace-title{
+  font-family:var(--sans); font-size:clamp(18px, 2.2vw, 24px); font-weight:700;
+  line-height:1.2; margin-top:8px; max-width:440px;
+}
+.hrspace-title span{ color:#E54141; }
+.hrspace-sub{
+  font-family:var(--sans); font-size:12px; color:rgba(255,255,255,.65);
+  margin-top:8px; max-width:380px; line-height:1.5;
+}
+.hrspace-cards{
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; position:relative; z-index:2;
+}
+.hr-min-card{
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+  padding:8px 10px; font-family:var(--sans);
+}
+.hr-min-card .t{ font-size:11px; font-weight:600; color:#fff; }
+.hr-min-card .d{ font-size:9px; color:rgba(255,255,255,0.5); margin-top:2px; }
+
+/* Faith Victory Custom Mockup */
+.fvic-mockup{
+  height:100%; width:100%; background:#FAF9F6; color:#1C1917;
+  display:flex; flex-direction:column; position:relative; overflow:hidden;
+}
+.fvic-nav-bar{
+  height:40px; background:#fff; border-bottom:1px solid #E7E5E4;
+  display:flex; align-items:center; justify-content:space-between; padding:0 18px;
+}
+.fvic-brand{
+  font-family:var(--sans); font-weight:800; font-size:13px; letter-spacing:-.01em; text-transform:uppercase;
+  display:flex; align-items:center; gap:6px; color:#1C1917;
+}
+.fvic-brand span{ color:#0D9488; }
+.fvic-hero-content{
+  padding:24px 20px; flex:1; display:flex; flex-direction:column; justify-content:center;
+}
+.fvic-eyebrow{
+  font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.18em;
+  text-transform:uppercase; color:#0D9488; margin-bottom:6px;
+}
+.fvic-h1{
+  font-family:var(--sans); font-size:clamp(19px, 2.4vw, 26px); font-weight:900;
+  text-transform:uppercase; line-height:1.05; letter-spacing:-.02em; color:#1C1917;
+}
+.fvic-h1 span{ color:#0D9488; }
+.fvic-desc{
+  font-family:var(--sans); font-size:12px; color:#57534E; margin-top:8px; line-height:1.5; max-width:390px;
+}
+.fvic-schedule{
+  background:#1C1917; color:#fff; padding:10px 18px; display:flex; align-items:center; justify-content:space-between;
+  font-family:var(--sans); font-size:11px; font-weight:600;
+}
+.fvic-schedule span{ color:#5EEAD4; }
+
+/* Right side: Project Details & Interactive Tabs */
+.project-info{
+  padding:clamp(22px, 3.5vw, 36px);
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.proj-tag-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.proj-tag{
+  font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.16em;
+  text-transform:uppercase; padding:3px 8px; border:1px solid var(--ink-25);
+}
+.proj-tag.active-pill{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+.project-info h3{
+  font-family:var(--mono); font-size:clamp(20px, 2.2vw, 28px); font-weight:700;
+  line-height:1.15; letter-spacing:-.02em; text-transform:uppercase;
+}
+.project-info .subtitle{
+  font-family:var(--sans); font-size:14px; font-weight:500; color:var(--ink-70); margin-top:6px;
+}
+
+/* Tabs */
+.proj-tabs{
+  display:flex; gap:0; border-bottom:1px solid var(--line); margin:20px 0 16px;
+}
+.tab-btn{
+  font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+  padding:7px 12px; background:transparent; border:none; border-bottom:2px solid transparent;
+  color:var(--ink-45); cursor:pointer; font-weight:600; transition:all .15s ease;
+}
+.tab-btn:hover{ color:var(--ink); }
+.tab-btn.active{ color:var(--rec); border-bottom-color:var(--rec); }
+
+.tab-pane{
+  font-family:var(--sans); font-size:14px; line-height:1.6; color:var(--ink-70);
+  min-height:140px; display:none;
+}
+.tab-pane.active{ display:block; }
+.tab-pane ul{ list-style:none; margin-top:8px; }
+.tab-pane li{
+  position:relative; padding-left:16px; margin-bottom:6px; font-size:13px; line-height:1.5;
+}
+.tab-pane li::before{
+  content:"→"; position:absolute; left:0; color:var(--rec); font-family:var(--mono);
+}
+
+/* Tech Chips */
+.chips-row{ display:flex; flex-wrap:wrap; gap:6px; margin:16px 0 24px; }
+.chip-sm{
+  font-family:var(--mono); font-size:11px; padding:4px 8px;
+  background:var(--paper); border:1px solid var(--line); color:var(--ink-70);
+}
+
+.proj-actions{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+
+/* ============================================================
+   03 TECHNICAL COMPETENCIES & COURSEWORK
+   ============================================================ */
+.skills-grid{
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:18px;
+}
+.skill-box{
+  border:1px solid var(--line); background:var(--panel); padding:24px 20px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  transition:transform .18s ease, border-color .18s ease;
+}
+.skill-box:hover{ transform:translateY(-3px); border-color:var(--ink); }
+.skill-box .num{
+  font-family:var(--mono); font-size:11px; font-weight:700; color:var(--rec); letter-spacing:.14em;
+}
+.skill-box h3{
+  font-family:var(--mono); font-size:15px; font-weight:700; text-transform:uppercase;
+  letter-spacing:-.01em; margin:14px 0 10px; line-height:1.3;
+}
+.skill-box p{
+  font-family:var(--sans); font-size:13px; line-height:1.55; color:var(--ink-70);
+}
+.skill-list{
+  margin-top:16px; padding-top:14px; border-top:1px dashed var(--line);
+  font-family:var(--mono); font-size:11px; color:var(--ink-45);
+}
+
+/* ============================================================
+   04 ACADEMIC PHILOSOPHY & ENGINEERING STANDARDS
+   ============================================================ */
+.philosophy-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:28px;
+}
+.phil-card{
+  border:1px solid var(--line); background:var(--panel); padding:32px;
+}
+.phil-card h3{
+  font-family:var(--mono); font-size:16px; font-weight:700; text-transform:uppercase;
+  margin-bottom:12px; letter-spacing:-.01em;
+}
+.phil-card p{
+  font-family:var(--sans); font-size:15px; line-height:1.65; color:var(--ink-70);
+}
+
+/* ============================================================
+   05 CONTACT
+   ============================================================ */
 .contact{ text-align:left; }
 .contact h2.cta{
   font-family:var(--mono); font-weight:700; text-transform:uppercase;
-  font-size:clamp(26px,5vw,60px); line-height:1; letter-spacing:-.03em;
-  max-width:16ch;
+  font-size:clamp(26px,5vw,56px); line-height:1.05; letter-spacing:-.03em;
+  max-width:20ch;
 }
-.contact .links{ display:flex; flex-wrap:wrap; gap:14px 40px; margin-top:44px; }
+.contact-note{
+  font-family:var(--sans); font-size:16px; color:var(--ink-70); margin-top:16px; max-width:560px;
+}
+.contact .links{ display:flex; flex-wrap:wrap; gap:16px 40px; margin-top:40px; }
 .contact .links a{
   font-family:var(--mono); font-size:14px; letter-spacing:.04em;
   display:inline-flex; align-items:center; gap:8px;
@@ -305,22 +493,26 @@ section.block{ padding:clamp(52px,7vh,88px) 0; position:relative; }
 .contact .links a:hover{ border-color:var(--rec); color:var(--rec); }
 
 /* FOOTER */
-footer.site{ border-top:1px solid var(--line); padding:26px 0; }
-.foot{ display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:12px; letter-spacing:.1em; color:var(--ink-45); }
+footer.site{ border-top:1px solid var(--line); padding:28px 0; margin-top:64px; }
+.foot{
+  display:flex; justify-content:space-between; align-items:center;
+  font-family:var(--mono); font-size:12px; letter-spacing:.1em; color:var(--ink-45);
+}
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-@media (max-width: 900px){
+@media (max-width: 960px){
   .about-grid{ grid-template-columns:1fr; }
-  .grid-long{ grid-template-columns:repeat(2,1fr); }
-  .grid-shorts{ grid-template-columns:repeat(3,1fr); }
-  .specs{ grid-template-columns:repeat(2,1fr); }
-  .specs .cell:nth-child(3){ border-left:0; }
-  .specs .cell:nth-child(3),.specs .cell:nth-child(4){ border-top:1px solid var(--line); }
+  .project-feature{ grid-template-columns:1fr; }
+  .project-preview{ border-right:none; border-bottom:1px solid var(--line); }
+  .skills-grid{ grid-template-columns:repeat(2, 1fr); }
+  .philosophy-grid{ grid-template-columns:1fr; }
+  .about-grid > .stack-card{ flex-direction:column; }
+  .about-grid > .stack-card .head{ border-right:0; border-bottom:1px solid var(--ink); padding:12px 16px; }
+  .about-grid > .stack-card .row{ border-right:0; border-bottom:1px solid var(--line); }
 }
-@media (max-width: 620px){
-  body{ font-size:17px; }
+@media (max-width: 640px){
   .nav-links{ display:none; }
   .nav-links.open{
     display:flex; position:absolute; top:64px; left:0; right:0;
@@ -334,16 +526,15 @@ footer.site{ border-top:1px solid var(--line); padding:26px 0; }
     letter-spacing:.1em; text-transform:uppercase; background:none;
     border:1px solid var(--ink); padding:8px 12px; cursor:pointer;
   }
-  .grid-long{ grid-template-columns:1fr; }
-  .grid-shorts{ grid-template-columns:repeat(2,1fr); }
+  .skills-grid{ grid-template-columns:1fr; }
+  .foot{ flex-direction:column; gap:12px; text-align:center; }
 }
 
 @media (prefers-reduced-motion: reduce){
   *{ animation:none !important; transition:none !important; scroll-behavior:auto; }
 }
 
-/* Focus visibility */
-a:focus-visible, button:focus-visible, .thumb:focus-visible{
+a:focus-visible, button:focus-visible{
   outline:2px solid var(--rec); outline-offset:3px;
 }
 </style>
@@ -355,10 +546,14 @@ a:focus-visible, button:focus-visible, .thumb:focus-visible{
 <!-- ============ HEADER ============ -->
 <header class="site">
   <div class="wrap nav">
-    <a href="#top" class="brand">NOCTURNE<span class="dot">.</span></a>
+    <a href="#top" class="brand">
+      DANNY FARAJE<span class="dot">.</span>
+      <span class="tag">STUDENT PORTFOLIO</span>
+    </a>
     <nav class="nav-links" id="navlinks">
-      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
       <a href="#about">About</a>
+      <a href="#skills">Competencies</a>
       <a href="#contact">Contact</a>
       <a href="#contact" class="btn btn-solid">Get in touch</a>
     </nav>
@@ -368,49 +563,62 @@ a:focus-visible, button:focus-visible, .thumb:focus-visible{
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
-  <span class="crosshair" style="top:120px; right:8%;"></span>
-  <span class="crosshair" style="bottom:40px; left:5%;"></span>
+  <span class="crosshair" style="top:110px; right:7%;"></span>
+  <span class="crosshair" style="bottom:30px; left:4%;"></span>
   <div class="wrap">
-    <div class="status"><span class="rec" aria-hidden="true"></span> Available for work</div>
-    <h1>Nocturne</h1>
-    <p class="role">Short-Form Editor · Motion &amp; 3D</p>
-    <p class="tagline">I cut short-form that holds attention frame&nbsp;one to the last&nbsp;— retention-first edits engineered around how the YouTube algorithm actually rewards watch&nbsp;time.</p>
+    <div class="status"><span class="rec" aria-hidden="true"></span> Open for Internships &amp; Projects</div>
+    <h1>Danny Faraje</h1>
+    <p class="role">Full-Stack Web Developer · Frontend Architecture &amp; UI Design</p>
+    <p class="tagline">Undergraduate developer crafting production-grade web systems. Grounded in modern full-stack standards with Next.js, TypeScript, and accessible UI engineering — turning complex organizational workflows into fast, clean software.</p>
+    
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-solid">Explore Live Projects ↓</a>
+      <a href="#about" class="btn btn-ghost">Academic Profile</a>
+    </div>
   </div>
 </section>
 
 <div class="ruler" aria-hidden="true"></div>
 
-<!-- ============ ABOUT (01) ============ -->
+<!-- ============ 01 ABOUT & ACADEMIC PROFILE ============ -->
 <section class="block" id="about">
   <div class="wrap">
     <div class="sec-head">
       <span class="num">01</span>
-      <h2>About</h2>
+      <h2>About &amp; Academic Profile</h2>
     </div>
     <div class="about-grid">
       <div class="about-media">
-        <div class="pfp"><img src="assets/profile.png" alt="Nocturne" /></div>
-      </div>
-
-      <div class="about-body">
-        <p class="lead">Hi, I'm Nocturne — a short-form editor. For the last three years I've been cutting short-form content, most of it for my own channel while I worked to grow it from the ground up.</p>
-        <p>That meant living inside the algorithm: testing hooks, studying retention, and learning first-hand what actually gets a video pushed instead of buried. Along the way I realized my real edge isn't being another creator — it's taking everything I learned about growth and video-making and using it to help other creators grow. If you're serious about your content, I'll handle the edit so your ideas land and your channel moves.</p>
-
-        <div class="stats">
-          <div class="stat"><div class="n">30M+</div><div class="k">Views · all platforms</div></div>
-          <div class="stat"><div class="n">3yr</div><div class="k">Editing experience</div></div>
-          <div class="stat"><div class="n">Open</div><div class="k">Now taking clients</div></div>
+        <div class="pfp">
+          <img src="assets/profile.png" alt="Danny Faraje profile photo" />
+        </div>
+        <div class="pfp-meta">
+          <div>LOC: Dar es Salaam / Global</div>
+          <div>STATUS: Web Engineering Student</div>
         </div>
       </div>
 
-      <aside class="stack-card" aria-label="Toolset">
-        <div class="head">Toolset · Spec</div>
-        <div class="row"><span class="k">Editorial</span><span class="v">Premiere Pro</span></div>
-        <div class="row"><span class="k">Motion / VFX</span><span class="v">After Effects</span></div>
-        <div class="row"><span class="k">3D</span><span class="v">Blender</span></div>
-        <div class="row"><span class="k">Graphics</span><span class="v">Photoshop · Illustrator</span></div>
-        <div class="row"><span class="k">Audio</span><span class="v">Audition</span></div>
-        <div class="row"><span class="k">Focus</span><span class="v">Retention &amp; hooks</span></div>
+      <div class="about-body">
+        <p class="lead">I'm a student web developer and software engineering enthusiast specializing in modern web ecosystems, responsive design systems, and full-stack cloud deployments.</p>
+        <p>While mastering foundational computer science theory, algorithms, and web standards in school, I actively bridge the gap between classroom coursework and industry practice by architecting and launching live, real-world web applications for institutions and commercial clients.</p>
+        <p>My work combines aesthetic discipline with engineering rigour: type-safe schemas, server-side data fetching, sub-second page performance, and WCAG accessibility standards. Whether designing corporate consultation portals or community media streaming hubs, I focus on shipping software that creates measurable value.</p>
+
+        <div class="stats">
+          <div class="stat"><div class="n">2+</div><div class="k">Live Production Apps</div></div>
+          <div class="stat"><div class="n">100%</div><div class="k">TypeScript &amp; Next.js</div></div>
+          <div class="stat"><div class="n">99+</div><div class="k">Lighthouse Scores</div></div>
+          <div class="stat"><div class="n">2026</div><div class="k">Academic Standing</div></div>
+        </div>
+      </div>
+
+      <aside class="stack-card" aria-label="Technical Specification">
+        <div class="head">System · Spec</div>
+        <div class="row"><span class="k">Frameworks</span><span class="v">Next.js (App Router) · React 19</span></div>
+        <div class="row"><span class="k">Languages</span><span class="v">TypeScript · JavaScript ES6+</span></div>
+        <div class="row"><span class="k">Styling</span><span class="v">Tailwind CSS · CSS Grid · Micro-animations</span></div>
+        <div class="row"><span class="k">Backend &amp; DB</span><span class="v">Node.js · Server Actions · REST</span></div>
+        <div class="row"><span class="k">Cloud &amp; DevOps</span><span class="v">Vercel · Git · Turbopack</span></div>
+        <div class="row"><span class="k">Standards</span><span class="v">WCAG 2.1 AA · Core Web Vitals</span></div>
       </aside>
     </div>
   </div>
@@ -418,33 +626,292 @@ a:focus-visible, button:focus-visible, .thumb:focus-visible{
 
 <div class="ruler" aria-hidden="true"></div>
 
-<!-- ============ WORK (02) ============ -->
-<section class="block" id="work">
+<!-- ============ 02 FEATURED PROJECTS ============ -->
+<section class="block" id="projects">
   <div class="wrap">
     <div class="sec-head">
       <span class="num">02</span>
-      <h2>Work</h2>
+      <h2>Featured Web Projects</h2>
     </div>
 
-    <div class="subhead">Shorts &amp; reels</div>
-    <div class="grid-shorts" id="gridShorts"></div>
+    <div class="projects-container">
+
+      <!-- PROJECT 1: HR SPACE -->
+      <article class="project-feature" id="proj-hrspace">
+        <div class="project-preview">
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <span class="b-dot red"></span>
+              <span class="b-dot yellow"></span>
+              <span class="b-dot green"></span>
+            </div>
+            <div class="browser-url">🔒 https://hrspace.vercel.app</div>
+            <a href="https://hrspace.vercel.app" target="_blank" rel="noopener" class="browser-action">Visit Live ↗</a>
+          </div>
+
+          <div class="mockup-canvas">
+            <div class="hrspace-mockup">
+              <div class="blueprint-grid"></div>
+              <div class="hrspace-nav">
+                <div class="hrspace-logo-text">
+                  <span>HR SPACE</span>
+                  <span class="hrspace-logo-badge">EXCELLENCE</span>
+                </div>
+                <div style="font-family:var(--mono); font-size:10px; color:#E54141;">● DAR ES SALAAM</div>
+              </div>
+
+              <div class="hrspace-hero">
+                <div class="hrspace-pill"><span>—</span> Recruitment &amp; HR Consultancy</div>
+                <h4 class="hrspace-title">Delivering solutions that create <span>real value</span> for your business.</h4>
+                <p class="hrspace-sub">Recruitment and HR consultancy in Dar es Salaam. We find the right talent, reduce risk, and deliver faster results.</p>
+              </div>
+
+              <div class="hrspace-cards">
+                <div class="hr-min-card">
+                  <div class="t">01 HR Compliance</div>
+                  <div class="d">Labor-law advisory</div>
+                </div>
+                <div class="hr-min-card">
+                  <div class="t">02 Background Checks</div>
+                  <div class="d">Verified screening</div>
+                </div>
+                <div class="hr-min-card">
+                  <div class="t">03 Team Training</div>
+                  <div class="d">Coached cohorts</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-info">
+          <div>
+            <div class="proj-tag-row">
+              <span class="proj-tag active-pill">Production Client App</span>
+              <span class="proj-tag">Full-Stack Next.js</span>
+            </div>
+            <h3>HR Space</h3>
+            <p class="subtitle">Recruitment &amp; Executive HR Consultancy Platform · Dar es Salaam, Tanzania</p>
+
+            <div class="proj-tabs" role="tablist">
+              <button class="tab-btn active" data-tab="hr-overview" role="tab">Overview</button>
+              <button class="tab-btn" data-tab="hr-arch" role="tab">Architecture</button>
+              <button class="tab-btn" data-tab="hr-features" role="tab">Key Features</button>
+            </div>
+
+            <div class="tab-content">
+              <div class="tab-pane active" id="hr-overview">
+                <p>Designed and built a corporate web platform for an established Dar es Salaam recruitment consultancy. Replaced static marketing with a conversion-oriented digital hub featuring structured service pathways, client inquiry workflows, and trust-building metrics.</p>
+              </div>
+              <div class="tab-pane" id="hr-arch">
+                <p>Architected using Next.js App Router and Turbopack for ultra-fast compilation and static route pre-rendering. Employs fluid Space Grotesk and Inter typographic scales with responsive CSS grid foundations and accessible motion primitives.</p>
+              </div>
+              <div class="tab-pane" id="hr-features">
+                <ul>
+                  <li>Interactive Candidate Matching visualizer and animated technical blueprint hero.</li>
+                  <li>Modular breakdown of 4 core offerings (Consultancy, Screening, Training, CSR).</li>
+                  <li>Frictionless multi-channel contact pathways (direct booking, email, phone, location map).</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="chips-row">
+              <span class="chip-sm">Next.js (App Router)</span>
+              <span class="chip-sm">React</span>
+              <span class="chip-sm">TypeScript</span>
+              <span class="chip-sm">Tailwind CSS</span>
+              <span class="chip-sm">Turbopack</span>
+              <span class="chip-sm">Vercel</span>
+            </div>
+          </div>
+
+          <div class="proj-actions">
+            <a href="https://hrspace.vercel.app" target="_blank" rel="noopener" class="btn btn-solid">Visit Live Website ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 2: FAITH VICTORY INTERNATIONAL CHURCH -->
+      <article class="project-feature" id="proj-fvic">
+        <div class="project-preview">
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <span class="b-dot red"></span>
+              <span class="b-dot yellow"></span>
+              <span class="b-dot green"></span>
+            </div>
+            <div class="browser-url">🔒 https://faithvictorytz.org</div>
+            <a href="https://faithvictorytz.org" target="_blank" rel="noopener" class="browser-action">Visit Live ↗</a>
+          </div>
+
+          <div class="mockup-canvas">
+            <div class="fvic-mockup">
+              <div class="fvic-nav-bar">
+                <div class="fvic-brand">FAITH VICTORY <span>CHURCH</span></div>
+                <div style="font-family:var(--mono); font-size:10px; color:#0D9488; font-weight:700;">● BROADCAST LIVE</div>
+              </div>
+
+              <div class="fvic-hero-content">
+                <div class="fvic-eyebrow">You are welcome here</div>
+                <h4 class="fvic-h1">FIND YOUR <span>VICTORY IN FAITH</span></h4>
+                <p class="fvic-desc">Join us this Sunday for worship, teaching, and a community that walks with you, wherever you are in your journey.</p>
+                <div style="margin-top:14px; display:flex; gap:8px;">
+                  <span style="font-family:var(--mono); font-size:10px; background:#0D9488; color:#fff; padding:4px 10px; font-weight:700; text-transform:uppercase;">Watch Live</span>
+                  <span style="font-family:var(--mono); font-size:10px; border:1px solid #1C1917; padding:4px 10px; font-weight:700; text-transform:uppercase;">Plan Visit</span>
+                </div>
+              </div>
+
+              <div class="fvic-schedule">
+                <div>SUNDAY SERVICE: 9:30 AM – 2:00 PM</div>
+                <span>TUE &amp; FRI: 5:00 PM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-info">
+          <div>
+            <div class="proj-tag-row">
+              <span class="proj-tag active-pill">Production Community App</span>
+              <span class="proj-tag">Full-Stack Platform</span>
+            </div>
+            <h3>Faith Victory Church</h3>
+            <p class="subtitle">Community &amp; Media Platform · Sermons, Live Stream &amp; Events</p>
+
+            <div class="proj-tabs" role="tablist">
+              <button class="tab-btn active" data-tab="fvic-overview" role="tab">Overview</button>
+              <button class="tab-btn" data-tab="fvic-arch" role="tab">Architecture</button>
+              <button class="tab-btn" data-tab="fvic-features" role="tab">Key Features</button>
+            </div>
+
+            <div class="tab-content">
+              <div class="tab-pane active" id="fvic-overview">
+                <p>Engineered a full-featured web portal for a large regional congregation. Replaced fragmented social posts with a centralized, mobile-responsive hub for live sermon broadcasts, event registrations, ministry information, and online giving.</p>
+              </div>
+              <div class="tab-pane" id="fvic-arch">
+                <p>Constructed on Next.js 15 with Server-Side Rendering (SSR) for real-time schedule updates and automated OpenGraph social preview generation. Optimized image and media assets to deliver instant playback even over fluctuating cellular bandwidth.</p>
+              </div>
+              <div class="tab-pane" id="fvic-features">
+                <ul>
+                  <li>Dedicated Live Broadcast portal (`/watch-live`) with real-time stream status.</li>
+                  <li>Searchable media catalog for past sermons, series, and spiritual study resources.</li>
+                  <li>Interactive community prayer request intake and online giving modules.</li>
+                  <li>Authenticated staff administration portal (`/admin`) for internal coordination.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="chips-row">
+              <span class="chip-sm">Next.js 15</span>
+              <span class="chip-sm">React</span>
+              <span class="chip-sm">TypeScript</span>
+              <span class="chip-sm">Tailwind CSS</span>
+              <span class="chip-sm">Media Streaming</span>
+              <span class="chip-sm">Vercel</span>
+            </div>
+          </div>
+
+          <div class="proj-actions">
+            <a href="https://faithvictorytz.org" target="_blank" rel="noopener" class="btn btn-solid">Visit Live Website ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
   </div>
 </section>
 
 <div class="ruler" aria-hidden="true"></div>
 
-<!-- ============ CONTACT (03) ============ -->
-<section class="block contact" id="contact">
+<!-- ============ 03 TECHNICAL COMPETENCIES ============ -->
+<section class="block" id="skills">
   <div class="wrap">
     <div class="sec-head">
       <span class="num">03</span>
+      <h2>Technical Competencies</h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-box">
+        <div>
+          <span class="num">01 / ARCHITECTURE</span>
+          <h3>Component Systems</h3>
+          <p>Writing composable, modular UI components in React and TypeScript with strict interface contracts and maintainable state boundaries.</p>
+        </div>
+        <div class="skill-list">React 19 · Next.js · App Router · Design Tokens</div>
+      </div>
+
+      <div class="skill-box">
+        <div>
+          <span class="num">02 / FULL-STACK</span>
+          <h3>Data &amp; APIs</h3>
+          <p>Implementing server components, server actions, RESTful endpoints, and backend persistence while keeping client bundles minimal.</p>
+        </div>
+        <div class="skill-list">Node.js · Server Actions · REST · Supabase</div>
+      </div>
+
+      <div class="skill-box">
+        <div>
+          <span class="num">03 / PERFORMANCE</span>
+          <h3>Speed &amp; Web Vitals</h3>
+          <p>Engineering for 95+ Core Web Vitals: image optimization, layout shift prevention (CLS=0), edge caching, and build-time pruning.</p>
+        </div>
+        <div class="skill-list">Turbopack · Vercel Edge · LCP/CLS Optimization</div>
+      </div>
+
+      <div class="skill-box">
+        <div>
+          <span class="num">04 / ACCESSIBILITY</span>
+          <h3>Standards &amp; UX</h3>
+          <p>Adhering to WCAG 2.1 AA accessibility guidelines: semantic landmarks, screen reader labels, keyboard tab order, and color contrast.</p>
+        </div>
+        <div class="skill-list">WCAG 2.1 AA · Semantic HTML · ARIA Standards</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler" aria-hidden="true"></div>
+
+<!-- ============ 04 ACADEMIC PHILOSOPHY ============ -->
+<section class="block" id="philosophy">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">04</span>
+      <h2>Academic Philosophy</h2>
+    </div>
+
+    <div class="philosophy-grid">
+      <div class="phil-card">
+        <h3>Theory Applied to Practice</h3>
+        <p>Software engineering is best understood when theory meets production realities. By deploying real platforms with live user traffic, I reinforce academic lessons in data structures, networking, and system design with hands-on debugging, performance profiling, and client communication.</p>
+      </div>
+
+      <div class="phil-card">
+        <h3>Clean Code &amp; Continuous Learning</h3>
+        <p>Code is read far more often than it is written. I prioritize readable, self-documenting code, type safety, and progressive enhancement. I approach every project with relentless curiosity, eager to master emerging web specifications and collaborate in team environments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler" aria-hidden="true"></div>
+
+<!-- ============ 05 CONTACT ============ -->
+<section class="block contact" id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">05</span>
       <h2>Contact</h2>
     </div>
-    <h2 class="cta">Got a project? Let's cut something good.</h2>
+    <h2 class="cta">Let's build something exceptional together.</h2>
+    <p class="contact-note">Currently open to software engineering internships, academic research opportunities, and web development collaborations. Feel free to reach out directly.</p>
+    
     <div class="links">
       <a href="mailto:dannyfaraje@gmail.com">✉ dannyfaraje@gmail.com</a>
-      <a href="#" onclick="return false;">◈ Discord — Nocturne.mov</a>
-      <a href="https://youtube.com/@madebydvee" target="_blank" rel="noopener">▷ YouTube — @madebydvee</a>
+      <a href="https://github.com/nocturnemov" target="_blank" rel="noopener">◈ GitHub — @nocturnemov</a>
+      <a href="https://hrspace.vercel.app" target="_blank" rel="noopener">▲ Live Demo — HR Space</a>
+      <a href="https://faithvictorytz.org" target="_blank" rel="noopener">▷ Live Demo — Faith Victory Church</a>
     </div>
   </div>
 </section>
@@ -452,59 +919,44 @@ a:focus-visible, button:focus-visible, .thumb:focus-visible{
 <!-- ============ FOOTER ============ -->
 <footer class="site">
   <div class="wrap foot">
-    <span>Nocturne © 2026</span>
-    <span>EOF</span>
+    <span>Danny Faraje · Academic Web Engineering Portfolio © 2026</span>
+    <span>Production Next.js &amp; TypeScript · EOF</span>
   </div>
 </footer>
 
 <script>
-/* ---------- Work data (real MrBeast IDs — swap for your own) ---------- */
-var SHORTS = ['LiH-P4rSkLI','f7y2XikE7sY','Df5Y-2ndQyU','egvLKQe6I4I','LgbyEFILLJI','YA_kX8hu1gg','XCGVurja73c','r9aWeGqp43s'];
+/* ---------- Interactive Tabs for Case Studies ---------- */
+(function(){
+  document.querySelectorAll('.proj-tabs').forEach(function(tabGroup){
+    var tabs = tabGroup.querySelectorAll('.tab-btn');
+    var card = tabGroup.closest('.project-info');
+    var panes = card.querySelectorAll('.tab-pane');
 
-var PLAY = '<span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>';
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        var targetId = this.getAttribute('data-tab');
+        
+        tabs.forEach(function(t){ t.classList.remove('active'); });
+        this.classList.add('active');
 
-function thumbURL(id){ return 'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg'; }
-function thumbHi(id){ return 'https://i.ytimg.com/vi/'+id+'/maxresdefault.jpg'; }
-
-function makeCard(id, title, ratioClass, tag){
-  var card = document.createElement('div'); card.className='card';
-  var thumb = document.createElement('div');
-  thumb.className='thumb '+ratioClass; thumb.tabIndex=0; thumb.setAttribute('role','button');
-  thumb.setAttribute('aria-label','Play '+(title||'short'));
-  var img = document.createElement('img');
-  img.loading='lazy'; img.alt=title||'MrBeast video'; img.src=thumbHi(id);
-  img.onerror=function(){ this.onerror=null; this.src=thumbURL(id); };
-  thumb.appendChild(img);
-  thumb.insertAdjacentHTML('beforeend', PLAY);
-  function playVid(){
-    var f=document.createElement('iframe');
-    f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';
-    f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    f.allowFullscreen=true; f.title=title||'MrBeast video';
-    thumb.innerHTML=''; thumb.appendChild(f);
-  }
-  thumb.addEventListener('click', playVid);
-  thumb.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playVid(); }});
-  card.appendChild(thumb);
-  if(title!==null){
-    var meta=document.createElement('div'); meta.className='meta';
-    meta.innerHTML='<div class="t">'+(title||'Short')+'</div><div class="tag">'+tag+'</div>';
-    card.appendChild(meta);
-  }
-  return card;
-}
-
-(function render(){
-  var gs=document.getElementById('gridShorts');
-  SHORTS.forEach(function(id,i){ gs.appendChild(makeCard(id, 'Short #'+String(i+1).padStart(2,'0'), 'r9x16', 'Reel · Sample')); });
+        panes.forEach(function(pane){
+          if(pane.id === targetId){
+            pane.classList.add('active');
+          } else {
+            pane.classList.remove('active');
+          }
+        });
+      });
+    });
+  });
 })();
 
-/* ---------- Scroll-spy nav ---------- */
+/* ---------- Scroll-spy navigation ---------- */
 (function(){
-  var links=[].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
-  var map={};
-  links.forEach(function(a){ var id=a.getAttribute('href').slice(1); if(id) map[id]=a; });
-  var obs=new IntersectionObserver(function(entries){
+  var links = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){ var id = a.getAttribute('href').slice(1); if(id) map[id] = a; });
+  var obs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
         links.forEach(function(a){ a.classList.remove('active'); });
@@ -512,18 +964,27 @@ function makeCard(id, title, ratioClass, tag){
       }
     });
   }, { rootMargin:'-45% 0px -50% 0px' });
-  ['about','work','contact'].forEach(function(id){ var el=document.getElementById(id); if(el) obs.observe(el); });
+  ['top','about','projects','skills','philosophy','contact'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) obs.observe(el);
+  });
 })();
 
-/* ---------- Mobile menu ---------- */
+/* ---------- Mobile Menu Toggle ---------- */
 (function(){
-  var t=document.getElementById('navToggle'), n=document.getElementById('navlinks');
-  if(!t) return;
-  t.addEventListener('click', function(){
-    var open=n.classList.toggle('open');
-    t.setAttribute('aria-expanded', open?'true':'false');
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navlinks');
+  if(!toggle || !links) return;
+  toggle.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
-  n.addEventListener('click', function(e){ if(e.target.tagName==='A'){ n.classList.remove('open'); t.setAttribute('aria-expanded','false'); }});
+  links.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
 })();
 </script>
 </body>
