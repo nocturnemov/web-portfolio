@@ -1,4 +1,4 @@
-# Web Engineering & Developer Portfolio — Handoff
+# Personal Web Projects & Hobbyist Developer Portfolio — Handoff
 
 **Date:** September 20, 2026  
 **Developer / Owner:** Tareeq Faraji  
@@ -9,25 +9,37 @@
 
 ---
 
-## 1. Project Overview & Evolution
+## 1. Project Overview & Persona Calibration
 
-The portfolio represents an end-to-end transformation from a video editing showcase into a **Modern Web Engineering & Full-Stack Developer Portfolio**.
+The website represents a personal portfolio centered on a **self-driven hobbyist builder, creative tinkerer, and web enthusiast**. The copy across the entire site has been calibrated away from corporate, enterprise, and academic jargon to a genuine, conversational, hobby-focused tone:
 
-### Perspective & Persona Refinement
-- **Hobbyist Builder Perspective:** The narrative in the **About** section has been calibrated to reflect a self-driven hobbyist builder and creative tinkerer. Rather than framing work strictly around formal academic coursework or corporate routines, it highlights:
-  - Intrinsic curiosity and late-night experimentation with code, design, and web interfaces.
-  - Joy of turning creative concepts into smooth, interactive, real-world tools.
-  - Uncompromising craftsmanship: type-safe architectures, sub-second performance, and accessible UI engineering.
-- **Section Headers & Status:**
-  - Section heading updated to **About Me**.
-  - Metadata badge: `STATUS: Hobbyist Developer & Builder` (Location: `Dar es Salaam / Global`).
-  - Stats highlight: `100% Passion Driven` alongside `2+ Live Production Apps`, `100% TypeScript & Next.js`, and `99+ Lighthouse Scores`.
-
-### Design System Architecture
-- **Visual Theme:** Technical blueprint aesthetic featuring an interactive radial dot-grid canvas, crosshair alignment markers, and measurement ruler dividers (`.ruler`).
-- **Typography:** `IBM Plex Mono` (specs/eyebrows/code), `Crimson Text` (editorial headlines), and `Hanken Grotesk` (clean sans-serif body).
-- **Styling Standards:** Zero-dependency semantic HTML5 & modern CSS custom properties, zero border-radius sharp geometry, and offset box-shadow hover states (`6px 6px 0 var(--ink)`).
-- **Safety & Backups:** Original video editing portfolio preserved locally at [`index.video-portfolio.backup.html`](file:///D:/VE%20port/index.video-portfolio.backup.html) and on GitHub under `nocturnemov/nocturnemov.github.io`.
+### Site-Wide Hobbyist Positioning
+- **Header & Hero:** 
+  - Tag updated to `HOBBYIST BUILDER` (replaced `STUDENT PORTFOLIO`).
+  - Nav label changed to `Toolkit` (replaced corporate `Competencies`).
+  - Status beacon: `Building for fun · Tinkering with web projects` (replaced `Open for Internships & Projects`).
+  - Role: `Hobbyist Web Developer · Code Tinkerer & UI Enthusiast`.
+  - Tagline: Focuses on building digital tools for the joy of creating, late-night experiments, and turning ideas into live realities.
+- **About Me Section:**
+  - Status badge: `STATUS: Hobbyist Coder & Tinkerer`.
+  - Narrative: Positions coding as an addictive creative playground rather than a corporate ladder or academic requirement. Celebrates the thrill of breaking CSS layouts, late-night curiosity, and building things from scratch.
+  - Stats: `2+ Live Projects Shipped`, `100% Self-Taught & Curious`, `99+ Lighthouse Speeds`, `100% Built for the Fun of It`.
+  - Spec bar: Relabeled to `My · Toolkit`, focusing on `Snappy Speeds · Clean UX · Accessible UI`.
+- **Projects Section:**
+  - Section title: `Things I've Built`.
+  - HR Space: Reframed from an enterprise consultancy case study to an engaging, real-world build featuring an interactive candidate matching visualizer.
+  - Faith Victory: Reframed from an institutional portal to a community streaming and sermon platform built to bring people together.
+  - Tab labels: Replaced corporate `Architecture` with `How It's Built` and `Key Highlights`.
+- **Toolkit & Skills (03):**
+  - Section title: `What I Like Building With`.
+  - Reframed categories from corporate competencies into `Snappy Interfaces`, `Backend & Logic`, `Speed & Smoothness`, and `Good Habits & UX`.
+- **Why I Love Building (04):**
+  - Section title: `Why I Love Building` (replaced `Academic Philosophy`).
+  - Cards: `Learning by Breaking & Building` and `Crafting for the Joy of It`.
+- **Contact & Footer (05):**
+  - CTA: `Got a cool idea? Let's chat.`
+  - Friendly invitation to connect, swap ideas, or collaborate on fun projects.
+  - Footer: `Tareeq Faraji · Handcrafted for fun with Next.js & TypeScript © 2026 · Built out of curiosity · EOF`.
 
 ---
 
